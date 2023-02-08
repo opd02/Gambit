@@ -1,0 +1,10 @@
+name: Gambit
+version: '${project.version}'
+main: me.opd.gambit.GambitPlugin
+api-version: 1.19
+authors: [ opd02 ]
+description: Custom gamemode of banking orbs, bosses, and evolved pvp
+commands:
+  gteam:
+  setup:
+  start:
