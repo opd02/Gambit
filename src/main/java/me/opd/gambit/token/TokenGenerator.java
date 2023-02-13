@@ -7,7 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class TokenGenerator {
 
     public static ItemStack tokenItem(int amount){
-        ItemStack token = new ItemStack(Material.SUNFLOWER, amoumt);
+        ItemStack token = new ItemStack(Material.SUNFLOWER, amount);
 
         ItemMeta tokemMeta = token.getItemMeta();
 
