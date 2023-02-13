@@ -67,6 +67,11 @@ public class SetupBlockPlace implements Listener {
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have set a glass break point for the &9blue team&7."));
                 GambitPlugin.glassBreakPoints.add(location);
                 break;
+            case ENDER_CHEST:
+                p.sendMessage(ChatManager.prefix + ChatManager.format("You have set a crate location&7."));
+                cm.saveLocation(e.getBlock().getLocation(), "");
+                //TODO add this to be a list situation rather than a single chest
+                break;
             default:
                 return;
         }

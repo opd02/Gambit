@@ -26,12 +26,14 @@ public class GambitPlugin extends JavaPlugin {
     public static int blueMobSpawnLocations = 8;
     public static ArrayList<Location> glassBreakPoints = new ArrayList<Location>();
     public ScoreManager scoreManager = new ScoreManager(0, 0, this);
+    public static boolean allowRespawning;
 
     @Override
     public void onEnable() {
         registerCommands();
         registerEvents();
         setGameState(GameStates.LOBBY);
+        GambitPlugin.allowRespawning = true;
     }
 
     @Override

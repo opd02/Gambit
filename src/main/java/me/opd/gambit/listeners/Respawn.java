@@ -1,7 +1,9 @@
 package me.opd.gambit.listeners;
 
 import me.opd.gambit.GambitPlugin;
+import me.opd.gambit.managers.ChatManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,6 +22,12 @@ public class Respawn implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent e){
+        if(!GambitPlugin.allowRespawning){
+            e.getPlayer().setGameMode(GameMode.SPECTATOR);
+            e.getPlayer().sendMessage(ChatManager.prefix + "You have lost the game!");
+            e.getPlayer().getInventory().clear();
+            return;
+        }
         Player p = e.getPlayer();
         PlayerInventory pi = p.getInventory();
         pi.remove(Material.NETHER_STAR);

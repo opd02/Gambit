@@ -35,5 +35,8 @@ public class BankingOrbs implements Listener {
             p.playSound(p.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 10, (float)1);
             return;
         }
+
+        ChatColor color = plugin.alive.get(p);
+
     }
 }
