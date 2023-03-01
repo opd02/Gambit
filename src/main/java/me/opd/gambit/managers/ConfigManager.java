@@ -4,6 +4,8 @@ import org.bukkit.Location;
 
 import me.opd.gambit.GambitPlugin;
 
+import java.util.ArrayList;
+
 public class ConfigManager {
 
     private GambitPlugin plugin;
@@ -19,6 +21,21 @@ public class ConfigManager {
 
     public Location locationFromConfig(String string){
         return plugin.getConfig().getLocation(string);
+    }
+
+    public void saveGlassBreakPoints(){
+        int i = 0;
+        for(Location loc : GambitPlugin.glassBreakPoints){
+            plugin.getConfig().set("locations.glassBreakPoints." + i,loc);
+            i++;
+        }
+        plugin.saveConfig();
+    }
+
+    public ArrayList<Location> getGlassPoints(){
+        ArrayList<Location> points = new ArrayList<Location>();
+        //TODO add this
+        return points;
     }
     //Lobby X Y Z
     //RedSpawn X  Y Z

@@ -43,7 +43,7 @@ public class Start implements CommandExecutor {
             }
             plugin.setGameState(GameStates.PREGAME);
 
-            PregameTimer timer = new PregameTimer(plugin);
+            PregameTimer timer = new PregameTimer(plugin, p.getWorld());
             timer.startPregameTimer();
         }
 

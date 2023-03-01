@@ -39,11 +39,12 @@ public class PlayerManager {
 
     public void addToTeam(Player p, ChatColor color){
         plugin.alive.put(p, color);
-        p.sendMessage(ChatManager.prefix + "You have joined the " + color.name().toLowerCase() + " team!");
+        p.sendMessage(ChatManager.prefix + "You have joined the " + color + color.name().toLowerCase() + ChatColor.GRAY + " team");
+        //invSet(p, color);
 
-        p.setDisplayName(color + p.getDisplayName());
-        p.setCustomName(color + p.getDisplayName());
-        p.setPlayerListName(color + p.getDisplayName());
+        //p.setCustomName(color + p.getDisplayName());
+        p.setDisplayName(color + p.getName());
+        p.setPlayerListName(color + p.getName());
         //p.sendMessage(color.toString());
     }
 

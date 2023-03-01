@@ -14,8 +14,9 @@ public class PregameTimer {
     private GambitPlugin plugin;
     private World world;
 
-    public PregameTimer(GambitPlugin plugin){
+    public PregameTimer(GambitPlugin plugin, World world){
         this.plugin = plugin;
+        this.world = world;
     }
 
     public void startPregameTimer() {
@@ -25,7 +26,6 @@ public class PregameTimer {
         for(Location b : GambitPlugin.glassBreakPoints){
             System.out.println(b.getWorld().getName());
             b.getWorld().setType(b, Material.GLASS);
-            this.world = b.getWorld();
         }
 
         for(Entity e : world.getEntities()){

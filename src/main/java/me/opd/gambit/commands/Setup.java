@@ -39,7 +39,7 @@ public class Setup implements CommandExecutor {
 
                 plugin.setup.remove(p);
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have been removed from the set-up crew."));
-                p.setGameMode(GameMode.SURVIVAL);
+                p.setGameMode(GameMode.ADVENTURE);
                 p.getInventory().clear();
                 plugin.getConfig().set("locations.glassBreakPoints", GambitPlugin.glassBreakPoints);
                 plugin.saveConfig();
