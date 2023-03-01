@@ -35,7 +35,6 @@ public class ConfigManager {
 
     public ArrayList<Location> getGlassPoints(){
         ArrayList<Location> points = new ArrayList<Location>();
-        //TODO add this
         for(Object loc : plugin.getConfig().getList("locations.glassBreakPoints").toArray()){
             Location location = (Location) loc;
             points.add(location);

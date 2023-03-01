@@ -24,8 +24,7 @@ public class PregameTimer {
         //System.out.println(GambitPlugin.glassBreakPoints.size());
 
         for(Location b : GambitPlugin.glassBreakPoints){
-            System.out.println(b.getWorld().getName());
-            b.getWorld().setType(b, Material.GLASS);
+            b.getWorld().setType(b, Material.YELLOW_STAINED_GLASS);
         }
 
         for(Entity e : world.getEntities()){
