@@ -4,6 +4,7 @@ import me.opd.gambit.commands.GTeam;
 import me.opd.gambit.commands.Setup;
 import me.opd.gambit.commands.Start;
 import me.opd.gambit.listeners.*;
+import me.opd.gambit.managers.ConfigManager;
 import me.opd.gambit.managers.ScoreManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -34,6 +35,7 @@ public class GambitPlugin extends JavaPlugin {
         registerEvents();
         setGameState(GameStates.LOBBY);
         GambitPlugin.allowRespawning = true;
+        GambitPlugin.glassBreakPoints = new ConfigManager(this).getGlassPoints();
     }
 
     @Override
