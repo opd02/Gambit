@@ -48,14 +48,14 @@ public class SetupBlockPlace implements Listener {
                 break;
             case RED_GLAZED_TERRACOTTA:
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have set a mob spawn point for the &cred team&7."));
-                cm.saveLocation(location, "locations.redMobSpawn." + GambitPlugin.redMobSpawnLocations);
-                GambitPlugin.redMobSpawnLocations --;
+                //cm.saveLocation(location, "locations.redMobSpawn." + GambitPlugin.redMobSpawnLocations);
+                GambitPlugin.redMobSpawnLocations.add(block.getLocation());
                 e.setCancelled(true);
                 break;
             case BLUE_GLAZED_TERRACOTTA:
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have set a mob spawn point for the &9blue team&7."));
-                cm.saveLocation(location, "locations.blueMobSpawn." + GambitPlugin.blueMobSpawnLocations);
-                GambitPlugin.blueMobSpawnLocations --;
+                //cm.saveLocation(location, "locations.blueMobSpawn." + GambitPlugin.blueMobSpawnLocations);
+                GambitPlugin.blueMobSpawnLocations.add(block.getLocation());
                 e.setCancelled(true);
                 break;
 

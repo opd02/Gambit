@@ -21,17 +21,11 @@ public class WaveSpawning {
     public static BukkitTask stask = null;
     private int select;
 
-    public ArrayList<Location> redMobSpawnLocations;
-    public ArrayList<Location> blueMobSpawnLocations;
-
-    @SuppressWarnings("unchecked")
     public WaveSpawning(GambitPlugin plugin){
         this.plugin = plugin;
         this.blueMobSpawning = true;
-        this.redMobSpawning = false;
+        this.redMobSpawning = true;
 //TODO get this spawning to work, add glass way of storing locations are entire object lest heap
-        this.redMobSpawnLocations = (List<Location>) plugin.getConfig().getList("locations.redMobSpawn").toArray();
-        this.blueMobSpawnLocations = (List<Location>) plugin.getConfig().getList("locations.blueMobSpawn").toArray();
     }
 
     public void spawnWaveSpawning(World world){
@@ -40,7 +34,7 @@ public class WaveSpawning {
             @Override
             public void run() {
 
-                select = random.nextInt(GambitPlugin.blueMobSpawnLocations);
+                select = random.nextInt(GambitPlugin.blueMobSpawnLocations.size());
 
                 if(!plugin.getGameState().equals(GameStates.INGAME)){
                     System.out.println(ChatColor.RED + "Mob spawning has ended because the game in not in the INGAME status.");
@@ -49,10 +43,10 @@ public class WaveSpawning {
                 }
 
                 if(blueMobSpawning){
-                    spawnWave(blueMobSpawnLocations.get(select));
+                    spawnWave(GambitPlugin.blueMobSpawnLocations.get(select));
                 }
                 if(redMobSpawning){
-                    spawnWave(redMobSpawnLocations.get(select));
+                    spawnWave(GambitPlugin.redMobSpawnLocations.get(select));
                 }
 
                 for (Player p : Bukkit.getOnlinePlayers()){

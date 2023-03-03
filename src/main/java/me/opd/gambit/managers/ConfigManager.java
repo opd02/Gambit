@@ -23,19 +23,19 @@ public class ConfigManager {
         return plugin.getConfig().getLocation(string);
     }
 
-    public void saveGlassBreakPoints(){
-//        int i = 0;
-//        for(Location loc : GambitPlugin.glassBreakPoints){
-//            plugin.getConfig().set("locations.glassBreakPoints." + i,loc);
-//            i++;
-//        }
-        plugin.getConfig().set("locations.glassBreakPoints",GambitPlugin.glassBreakPoints);
-        plugin.saveConfig();
-    }
 
     public ArrayList<Location> getGlassPoints(){
         ArrayList<Location> points = new ArrayList<Location>();
         for(Object loc : plugin.getConfig().getList("locations.glassBreakPoints").toArray()){
+            Location location = (Location) loc;
+            points.add(location);
+        }
+        return points;
+    }
+
+    public ArrayList<Location> getSpawningLocations(String string){
+        ArrayList<Location> points = new ArrayList<Location>();
+        for(Object loc : plugin.getConfig().getList("locations." + string + "MobSpawnLocations").toArray()){
             Location location = (Location) loc;
             points.add(location);
         }

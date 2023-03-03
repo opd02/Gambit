@@ -23,11 +23,11 @@ public class GambitPlugin extends JavaPlugin {
     public ArrayList<Player> spectating = new ArrayList<>();
     //public ArrayList<Player> vanished = new ArrayList<>();
     public ArrayList<Player> setup = new ArrayList<>();
-    public static int redMobSpawnLocations = 8;
-    public static int blueMobSpawnLocations = 8;
     public static ArrayList<Location> glassBreakPoints = new ArrayList<Location>();
     public ScoreManager scoreManager = new ScoreManager(0, 0, this);
     public static boolean allowRespawning;
+    public static ArrayList<Location> blueMobSpawnLocations = new ArrayList<>();
+    public static ArrayList<Location> redMobSpawnLocations = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -35,16 +35,22 @@ public class GambitPlugin extends JavaPlugin {
         registerEvents();
         setGameState(GameStates.LOBBY);
         GambitPlugin.allowRespawning = true;
-        GambitPlugin.glassBreakPoints = new ConfigManager(this).getGlassPoints();
+        ConfigManager cm = new ConfigManager(this);
+        GambitPlugin.glassBreakPoints = cm.getGlassPoints();
+        GambitPlugin.redMobSpawnLocations = cm.getSpawningLocations("red");
+        GambitPlugin.blueMobSpawnLocations = cm.getSpawningLocations("blue");
     }
 
     @Override
     public void onDisable() {
-        this.saveConfig();
         alive.clear();
         spectating.clear();
         setup.clear();
         glassBreakPoints.clear();
+
+        this.getConfig().set("locations.blueMobSpawnLocations", GambitPlugin.blueMobSpawnLocations);
+        this.getConfig().set("locations.redMobSpawnLocations", GambitPlugin.redMobSpawnLocations);
+        this.saveConfig();
     }
 
     private void registerCommands() {
