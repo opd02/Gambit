@@ -1,7 +1,7 @@
 package me.opd.gambit.managers;
 
 import me.opd.gambit.GambitPlugin;
-import org.bukkit.Color;
+import org.bukkit.ChatColor;
 
 public class ScoreManager {
 
@@ -30,19 +30,19 @@ public class ScoreManager {
         this.blueScore = 0;
     }
 
-    public void increaseScore(Color color, int amount){
-        if(color.equals(Color.RED)){
+    public void increaseScore(ChatColor color, int amount){
+        if(color.equals(ChatColor.RED)){
             this.redScore += amount;
-        }else if(color.equals(Color.BLUE)){
+        }else if(color.equals(ChatColor.BLUE)){
             this.blueScore += amount;
         }
         checkIfWon(color);
     }
 
-    public void checkIfWon(Color color){
-        if(color.equals(Color.RED) && this.redScore >= scoreToWin){
+    public void checkIfWon(ChatColor color){
+        if(color.equals(ChatColor.RED) && this.redScore >= scoreToWin){
             //TODO Add portal  opening and respawn denying
-        }else if(color.equals(Color.BLUE) && this.blueScore >= scoreToWin){
+        }else if(color.equals(ChatColor.BLUE) && this.blueScore >= scoreToWin){
             //TODO add portal as well and respawn blocking
         }
     }

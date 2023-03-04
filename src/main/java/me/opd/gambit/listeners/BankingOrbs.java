@@ -37,6 +37,6 @@ public class BankingOrbs implements Listener {
         }
 
         ChatColor color = plugin.alive.get(p);
-
+        GambitPlugin.scoreManager.increaseScore(color, p.getLevel());
     }
 }

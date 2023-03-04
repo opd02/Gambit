@@ -24,7 +24,7 @@ public class GambitPlugin extends JavaPlugin {
     //public ArrayList<Player> vanished = new ArrayList<>();
     public ArrayList<Player> setup = new ArrayList<>();
     public static ArrayList<Location> glassBreakPoints = new ArrayList<Location>();
-    public ScoreManager scoreManager = new ScoreManager(0, 0, this);
+    public static ScoreManager scoreManager;
     public static boolean allowRespawning;
     public static ArrayList<Location> blueMobSpawnLocations = new ArrayList<>();
     public static ArrayList<Location> redMobSpawnLocations = new ArrayList<>();
@@ -39,6 +39,7 @@ public class GambitPlugin extends JavaPlugin {
         GambitPlugin.glassBreakPoints = cm.getGlassPoints();
         GambitPlugin.redMobSpawnLocations = cm.getSpawningLocations("red");
         GambitPlugin.blueMobSpawnLocations = cm.getSpawningLocations("blue");
+        GambitPlugin.scoreManager = new ScoreManager(0, 0, this);
     }
 
     @Override
