@@ -7,9 +7,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class WaveSpawning {
@@ -25,7 +22,6 @@ public class WaveSpawning {
         this.plugin = plugin;
         this.blueMobSpawning = true;
         this.redMobSpawning = true;
-//TODO get this spawning to work, add glass way of storing locations are entire object lest heap
     }
 
     public void spawnWaveSpawning(World world){
