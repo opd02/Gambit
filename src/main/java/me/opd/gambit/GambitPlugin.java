@@ -3,9 +3,11 @@ package me.opd.gambit;
 import me.opd.gambit.commands.GTeam;
 import me.opd.gambit.commands.Setup;
 import me.opd.gambit.commands.Start;
+import me.opd.gambit.commands.TokenGive;
 import me.opd.gambit.listeners.*;
 import me.opd.gambit.managers.ConfigManager;
 import me.opd.gambit.managers.ScoreManager;
+import me.opd.gambit.token.TokenInteractListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -58,6 +60,7 @@ public class GambitPlugin extends JavaPlugin {
         Bukkit.getServer().getPluginCommand("start").setExecutor(new Start(this));
         Bukkit.getServer().getPluginCommand("setup").setExecutor(new Setup(this));
         Bukkit.getServer().getPluginCommand("gteam").setExecutor(new GTeam(this));
+        Bukkit.getServer().getPluginCommand("tokengive").setExecutor(new TokenGive());
     }
 
     private void registerEvents() {
@@ -67,6 +70,7 @@ public class GambitPlugin extends JavaPlugin {
         pm.registerEvents(new Respawn(this), this);
         pm.registerEvents(new SetupBlockPlace(this), this);
         pm.registerEvents(new BankingOrbs(this), this);
+        pm.registerEvents(new TokenInteractListener(), this);
     }
 
     public GameStates getGameState(){

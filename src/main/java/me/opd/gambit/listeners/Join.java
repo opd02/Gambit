@@ -30,6 +30,8 @@ public class Join implements Listener {
 
         if(plugin.getGameState()== GameStates.LOBBY){
             p.sendMessage(ChatManager.prefix + ChatManager.format("Welcome to Gambit! Type &r/gteam join <blue/red>&7 to join a team!"));
+            p.getInventory().clear();
+            p.getEquipment().clear();
             p.teleport(cm.locationFromConfig("locations.lobby"));
             //new PlayerManager(plugin).handle(p);
         }

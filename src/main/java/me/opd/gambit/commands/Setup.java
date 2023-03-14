@@ -59,6 +59,7 @@ public class Setup implements CommandExecutor {
                 p.getInventory().addItem(new ItemStack(Material.RED_GLAZED_TERRACOTTA,1));
                 p.getInventory().addItem(new ItemStack(Material.BLUE_STAINED_GLASS,1));
                 p.getInventory().addItem(new ItemStack(Material.RED_STAINED_GLASS,1));
+                p.getInventory().addItem(new ItemStack(Material.ENDER_CHEST,1));
                 return true;
 
             }
