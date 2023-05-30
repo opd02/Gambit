@@ -32,8 +32,8 @@ public class WaveSpawning {
 
                 select = random.nextInt(GambitPlugin.blueMobSpawnLocations.size());
 
-                if(!plugin.getGameState().equals(GameStates.INGAME)){
-                    System.out.println(ChatColor.RED + "Mob spawning has ended because the game in not in the INGAME status.");
+                if(!GambitPlugin.getGameState().equals(GameStates.INGAME)){
+                    Bukkit.getServer().broadcastMessage(ChatColor.RED + "Mob spawning has ended because the game in not in the INGAME status.");
                     stask.cancel();
                     return;
                 }

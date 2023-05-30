@@ -67,8 +67,9 @@ public class PregameTimer {
                     Bukkit.broadcastMessage(ChatManager.prefix + "The game has now started!");
 
                     for(Location b : GambitPlugin.glassBreakPoints){
+                        b.getWorld().spawnParticle(Particle.BLOCK_CRACK, b, 10, 10, 10, 10, 10, b.getBlock().getBlockData());
+                        b.getWorld().playSound(b,Sound.BLOCK_GLASS_BREAK,1,1);
                         b.getWorld().setType(b, Material.AIR);
-                        b.getWorld().spawnParticle(Particle.BLOCK_CRACK, b, 1, 1, 1, 1, 1, b.getBlock().getBlockData());
 
                     }
 
