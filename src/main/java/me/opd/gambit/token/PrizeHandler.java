@@ -17,13 +17,13 @@ public class PrizeHandler {
         int got = rand.nextInt(9);
         if(got==0){
             ItemStack sugar = new ItemStack(Material.SUGAR, 3);
-            ItemMeta sugarmeta = sugar.getItemMeta();
-            sugarmeta.setDisplayName(ChatColor.GRAY + "" + ChatColor.BOLD + "Team Speed Boost");
+            ItemMeta sugarMeta = sugar.getItemMeta();
+            sugarMeta.setDisplayName(ChatColor.GRAY + "" + ChatColor.BOLD + "Team Speed Boost");
             ArrayList<String> lore = new ArrayList<String>();
             lore.add(ChatColor.GRAY + "Drop this item to give");
             lore.add(ChatColor.GRAY + "your team a boost!");
-            sugarmeta.setLore(lore);
-            sugar.setItemMeta(sugarmeta);
+            sugarMeta.setLore(lore);
+            sugar.setItemMeta(sugarMeta);
             p.getWorld().dropItem(loc, sugar);
         }
         if(got==1){
