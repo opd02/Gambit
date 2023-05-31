@@ -2,6 +2,7 @@ package me.opd.gambit.countdowns;
 
 import me.opd.gambit.GambitPlugin;
 import me.opd.gambit.GameStates;
+import me.opd.gambit.managers.ScoreManager;
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -12,16 +13,18 @@ import java.util.Random;
 public class WaveSpawning {
 
     private GambitPlugin plugin;
-    public boolean blueMobSpawning;
-    public boolean redMobSpawning;
+    public static boolean blueMobSpawning;
+    public static boolean redMobSpawning;
     private Random random = new Random();
     public static BukkitTask stask = null;
     private int select;
+    private ScoreManager scoreManager;
 
     public WaveSpawning(GambitPlugin plugin){
         this.plugin = plugin;
-        this.blueMobSpawning = true;
-        this.redMobSpawning = true;
+        blueMobSpawning = true;
+        redMobSpawning = true;
+        this.scoreManager = new ScoreManager(0, 0, plugin);
     }
 
     public void spawnWaveSpawning(World world){
@@ -40,13 +43,19 @@ public class WaveSpawning {
 
                 if(blueMobSpawning){
                     spawnWave(GambitPlugin.blueMobSpawnLocations.get(select));
+                    for (Player p : Bukkit.getOnlinePlayers()){
+                        if(GambitPlugin.playerManager.getTeam(p)==ChatColor.BLUE){
+                            p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1, 1);
+                        }
+                    }
                 }
                 if(redMobSpawning){
                     spawnWave(GambitPlugin.redMobSpawnLocations.get(select));
-                }
-
-                for (Player p : Bukkit.getOnlinePlayers()){
-                    p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1, 1);
+                    for (Player p : Bukkit.getOnlinePlayers()){
+                        if(GambitPlugin.playerManager.getTeam(p)==ChatColor.RED){
+                            p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1, 1);
+                        }
+                    }
                 }
             }
         }, 0, 900L);

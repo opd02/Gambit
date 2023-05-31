@@ -35,10 +35,16 @@ public class PregameTimer {
 
         new BukkitRunnable() {
 
-            int number = 11;
+            int number = 10;
 
             @Override
             public void run() {
+                if(!GambitPlugin.getGameState().equals(GameStates.PREGAME)){
+                    Bukkit.getServer().broadcastMessage(ChatColor.RED + "Gameplay has been suspended because the game in not in the PREGAME status.");
+                    cancel();
+                    return;
+                }
+
                 if (number > 0) {
                     if (number == 10) {
                         Bukkit.broadcastMessage(ChatManager.prefix + "Game starting in 10 seconds.");
@@ -73,11 +79,10 @@ public class PregameTimer {
 
                     }
 
-                    plugin.setGameState(GameStates.INGAME);
+                    GambitPlugin.setGameState(GameStates.INGAME);
 
                     WaveSpawning ws = new WaveSpawning(plugin);
                     ws.spawnWaveSpawning(world);
-
 
                     cancel();
                 }

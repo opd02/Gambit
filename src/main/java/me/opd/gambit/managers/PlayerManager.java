@@ -27,6 +27,9 @@ public class PlayerManager {
         pi.clear();
         p.setLevel(0);
         invSet(p, plugin.alive.get(p));
+        p.setHealth(20);
+        p.setSaturation(20);
+        p.setExp(0);
         //p.sendMessage("locations." + plugin.alive.get(p).name() + "TeamSpawn");
         p.teleport(plugin.getConfig().getLocation("locations." + plugin.alive.get(p).name().toLowerCase() + "TeamSpawn"));
 

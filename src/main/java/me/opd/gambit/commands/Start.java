@@ -36,6 +36,7 @@ public class Start implements CommandExecutor {
             Player p = (Player) sender;
 
             p.getWorld().setGameRule(GameRule.KEEP_INVENTORY, true);
+            p.getWorld().setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS,false);
             PlayerManager pm = new PlayerManager(plugin);
 
             for(Player alivePlayer : plugin.alive.keySet()){

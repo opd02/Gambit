@@ -3,6 +3,7 @@ package me.opd.gambit;
 import me.opd.gambit.commands.*;
 import me.opd.gambit.listeners.*;
 import me.opd.gambit.managers.ConfigManager;
+import me.opd.gambit.managers.PlayerManager;
 import me.opd.gambit.managers.ScoreManager;
 import me.opd.gambit.token.TokenInteractListener;
 import org.bukkit.Bukkit;
@@ -27,6 +28,7 @@ public class GambitPlugin extends JavaPlugin {
     public static boolean allowRespawning;
     public static ArrayList<Location> blueMobSpawnLocations = new ArrayList<>();
     public static ArrayList<Location> redMobSpawnLocations = new ArrayList<>();
+    public static PlayerManager playerManager;
 
     @Override
     public void onEnable() {
@@ -39,6 +41,7 @@ public class GambitPlugin extends JavaPlugin {
         GambitPlugin.redMobSpawnLocations = cm.getSpawningLocations("red");
         GambitPlugin.blueMobSpawnLocations = cm.getSpawningLocations("blue");
         GambitPlugin.scoreManager = new ScoreManager(0, 0, this);
+        GambitPlugin.playerManager = new PlayerManager(this);
     }
 
     @Override
