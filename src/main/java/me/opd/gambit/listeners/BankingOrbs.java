@@ -14,7 +14,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class BankingOrbs implements Listener {
-
+    
     private GambitPlugin plugin;
 
     public BankingOrbs(GambitPlugin plugin) {
