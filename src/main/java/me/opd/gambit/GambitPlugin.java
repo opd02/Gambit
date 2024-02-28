@@ -9,6 +9,7 @@ import me.opd.gambit.token.TokenInteractListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,6 +30,7 @@ public class GambitPlugin extends JavaPlugin {
     public static ArrayList<Location> blueMobSpawnLocations = new ArrayList<>();
     public static ArrayList<Location> redMobSpawnLocations = new ArrayList<>();
     public static PlayerManager playerManager;
+    public static ArrayList<Entity> frozen = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -74,6 +76,7 @@ public class GambitPlugin extends JavaPlugin {
         pm.registerEvents(new SetupBlockPlace(this), this);
         pm.registerEvents(new BankingOrbs(this), this);
         pm.registerEvents(new TokenInteractListener(), this);
+        pm.registerEvents(new DropPrizeEvent(this), this);
     }
 
     public static GameStates getGameState(){
