@@ -14,14 +14,14 @@ public class ScoreManager {
     public int redBossLevel;
 
     //Boss level 0 is starting, no boss out
-      //Boss level 1 is first boss is out
+    //Boss level 1 is first boss is out
     //Boss level 2 is fighting round 2
-        //Boss level 3 is second boss
+    //Boss level 3 is second boss
     //Boss level 4 is third fighting round
-        //Boss level 5 is third boss WITHER
+    //Boss level 5 is third boss WITHER
     //Boss level 6 is all done and just fighting for tokens are their portal is open
 
-    public ScoreManager(int redStart, int blueStart, GambitPlugin plugin){
+    public ScoreManager(int redStart, int blueStart, GambitPlugin plugin) {
         this.plugin = plugin;
         this.redScore = redStart;
         this.blueScore = blueStart;
@@ -30,44 +30,56 @@ public class ScoreManager {
         redBossLevel = 0;
     }
 
-    public int getBlueScore(){
+    public void setScoreToWin(int scoreToWin) {
+        this.scoreToWin = scoreToWin;
+    }
+
+    public int getBlueScore() {
         return this.blueScore;
     }
 
-    public int getRedScore(){
+    public int getRedScore() {
         return this.redScore;
     }
 
-    public void resetAllScores(){
+    public void resetAllScores() {
         this.redScore = 0;
         this.blueScore = 0;
         this.blueBossLevel = 0;
         this.redBossLevel = 0;
     }
 
-    public void increaseScore(ChatColor color, int amount){
-        if(color.equals(ChatColor.RED)){
+    public void increaseScore(ChatColor color, int amount) {
+        if (color.equals(ChatColor.RED)) {
             this.redScore += amount;
             Bukkit.getServer().broadcastMessage(ChatManager.prefix + ChatColor.RED + "Red team now has " + this.redScore + " orbs in the bank!");
-        }else if(color.equals(ChatColor.BLUE)){
+        } else if (color.equals(ChatColor.BLUE)) {
             this.blueScore += amount;
             Bukkit.getServer().broadcastMessage(ChatManager.prefix + ChatColor.BLUE + "Blue team now has " + this.blueScore + " orbs in the bank!");
         }
-        checkIfWon(color);
+        runScoreChecks(color);
     }
 
-    public void checkIfWon(ChatColor color){
+    public void runScoreChecks(ChatColor color) {
 
-        if(color.equals(ChatColor.RED) && this.redScore >= scoreToWin){
+        if (color.equals(ChatColor.RED) && this.redScore >= scoreToWin) {
             //TODO Add portal  opening and respawn denying
-        }else if(color.equals(ChatColor.BLUE) && this.blueScore >= scoreToWin){
+            GambitPlugin.allowRespawning = false;
+            this.redBossLevel = 6;
+            for (ChatColor ccolor : GambitPlugin.alive.values()) {
+                if (ccolor.equals(ChatColor.RED)) {
+                }
+            }
+        } else if (color.equals(ChatColor.BLUE) && this.blueScore >= scoreToWin) {
             //TODO add portal as well and respawn blocking
-        }else{
+            GambitPlugin.allowRespawning = false;
+            this.redBossLevel = 6;
+        } else {
             checkIfBoss(color);
         }
     }
 
-    public void checkIfBoss(ChatColor color){
+    public void checkIfBoss(ChatColor color) {
 
     }
 }

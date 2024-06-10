@@ -14,23 +14,24 @@ import org.bukkit.event.block.BlockPlaceEvent;
 public class SetupBlockPlace implements Listener {
 
     private GambitPlugin plugin;
-    public SetupBlockPlace(GambitPlugin plugin){
+
+    public SetupBlockPlace(GambitPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onPlayerBlockPlace(BlockPlaceEvent e){
+    public void onPlayerBlockPlace(BlockPlaceEvent e) {
         ConfigManager cm = new ConfigManager(plugin);
         Player p = e.getPlayer();
         Block block = e.getBlock();
 
-        if(!plugin.setup.contains(p)){
+        if (!plugin.setup.contains(p.getUniqueId())) {
             return;
         }
 
         Location location = block.getLocation();
 
-        switch(block.getType()){
+        switch (block.getType()) {
             case EMERALD_BLOCK:
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have set the lobby point."));
                 cm.saveLocation(location, "locations.lobby");
@@ -62,10 +63,22 @@ public class SetupBlockPlace implements Listener {
             case RED_STAINED_GLASS:
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have set a glass break point for the &cred team&7."));
                 GambitPlugin.glassBreakPoints.add(location);
+                e.setCancelled(true);
                 break;
             case BLUE_STAINED_GLASS:
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have set a glass break point for the &9blue team&7."));
                 GambitPlugin.glassBreakPoints.add(location);
+                e.setCancelled(true);
+                break;
+            case DEEPSLATE_REDSTONE_ORE:
+                p.sendMessage(ChatManager.prefix + ChatManager.format("You have set a boss-spawn point for the &cred team&7."));
+                cm.saveLocation(location, "locations.RedTeamBossSpawn");
+                e.setCancelled(true);
+                break;
+            case DEEPSLATE_LAPIS_ORE:
+                p.sendMessage(ChatManager.prefix + ChatManager.format("You have set a boss-spawn point for the &9blue team&7."));
+                cm.saveLocation(location, "locations.BlueTeamBossSpawn");
+                e.setCancelled(true);
                 break;
             default:
                 return;

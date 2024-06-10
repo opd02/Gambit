@@ -18,15 +18,15 @@ public class PlayerManager {
 
     private GambitPlugin plugin;
 
-    public PlayerManager(GambitPlugin plugin){
+    public PlayerManager(GambitPlugin plugin) {
         this.plugin = plugin;
     }
 
-    public void handle(Player p){
+    public void handle(Player p) {
         PlayerInventory pi = p.getInventory();
         pi.clear();
         p.setLevel(0);
-        invSet(p, plugin.alive.get(p));
+        invSet(p, plugin.alive.get(p.getUniqueId()));
         p.setHealth(20);
         p.setSaturation(20);
         p.setExp(0);
@@ -40,8 +40,8 @@ public class PlayerManager {
         }, 2L);
     }
 
-    public void addToTeam(Player p, ChatColor color){
-        plugin.alive.put(p, color);
+    public void addToTeam(Player p, ChatColor color) {
+        plugin.alive.put(p.getUniqueId(), color);
         p.sendMessage(ChatManager.prefix + "You have joined the " + color + color.name().toLowerCase() + ChatColor.GRAY + " team");
         //invSet(p, color);
 
@@ -51,22 +51,22 @@ public class PlayerManager {
         //p.sendMessage(color.toString());
     }
 
-    public ChatColor getTeam(Player p){
-        if(!plugin.alive.containsKey(p)){
+    public ChatColor getTeam(Player p) {
+        if (!plugin.alive.containsKey(p.getUniqueId())) {
             return null;
-        }else{
-            return plugin.alive.get(p);
+        } else {
+            return plugin.alive.get(p.getUniqueId());
         }
     }
 
-    public void invSet(Player p, ChatColor ccolor){
+    public void invSet(Player p, ChatColor ccolor) {
 
         Color color = null;
 
-        if(ccolor==ChatColor.RED){
+        if (ccolor == ChatColor.RED) {
             color = Color.RED;
-        }else{
-            color= Color.BLUE;
+        } else {
+            color = Color.BLUE;
         }
 
         PlayerInventory pi = p.getInventory();

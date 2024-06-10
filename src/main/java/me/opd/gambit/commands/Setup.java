@@ -1,5 +1,7 @@
 package me.opd.gambit.commands;
 
+import me.opd.gambit.GambitPlugin;
+import me.opd.gambit.managers.ChatManager;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -7,9 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import me.opd.gambit.GambitPlugin;
-import me.opd.gambit.managers.ChatManager;
 
 public class Setup implements CommandExecutor {
 
@@ -22,22 +21,22 @@ public class Setup implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        if(cmd.getName().equalsIgnoreCase("setup")){
-            if(!sender.isOp()){
+        if (cmd.getName().equalsIgnoreCase("setup")) {
+            if (!sender.isOp()) {
                 sender.sendMessage(ChatManager.permission);
                 return true;
             }
 
-            if(!(sender instanceof Player)){
+            if (!(sender instanceof Player)) {
                 sender.sendMessage(ChatManager.format("&cThis command is for players only."));
                 return false;
             }
 
             Player p = (Player) sender;
 
-            if(plugin.setup.contains(p)){
+            if (plugin.setup.contains(p.getUniqueId())) {
 
-                plugin.setup.remove(p);
+                plugin.setup.remove(p.getUniqueId());
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have been removed from the set-up crew."));
                 p.setGameMode(GameMode.ADVENTURE);
                 p.getInventory().clear();
@@ -46,20 +45,23 @@ public class Setup implements CommandExecutor {
                 //GambitPlugin.glassBreakPoints.clear();
                 return true;
 
-            }else{
+            } else {
 
-                plugin.setup.add(p);
+                plugin.setup.add(p.getUniqueId());
                 p.sendMessage(ChatManager.prefix + ChatManager.format("You have been added to the set-up crew."));
                 p.setGameMode(GameMode.CREATIVE);
                 p.getInventory().clear();
-                p.getInventory().addItem(new ItemStack(Material.EMERALD_BLOCK,1));
-                p.getInventory().addItem(new ItemStack(Material.BLUE_BANNER,1));
-                p.getInventory().addItem(new ItemStack(Material.RED_BANNER,1));
-                p.getInventory().addItem(new ItemStack(Material.BLUE_GLAZED_TERRACOTTA,1));
-                p.getInventory().addItem(new ItemStack(Material.RED_GLAZED_TERRACOTTA,1));
-                p.getInventory().addItem(new ItemStack(Material.BLUE_STAINED_GLASS,1));
-                p.getInventory().addItem(new ItemStack(Material.RED_STAINED_GLASS,1));
-                p.getInventory().addItem(new ItemStack(Material.ENDER_CHEST,1));
+                p.getInventory().addItem(new ItemStack(Material.EMERALD_BLOCK, 1));
+                p.getInventory().addItem(new ItemStack(Material.BLUE_BANNER, 1));
+                p.getInventory().addItem(new ItemStack(Material.RED_BANNER, 1));
+                p.getInventory().addItem(new ItemStack(Material.BLUE_GLAZED_TERRACOTTA, 1));
+                p.getInventory().addItem(new ItemStack(Material.RED_GLAZED_TERRACOTTA, 1));
+                p.getInventory().addItem(new ItemStack(Material.BLUE_STAINED_GLASS, 1));
+                p.getInventory().addItem(new ItemStack(Material.RED_STAINED_GLASS, 1));
+                p.getInventory().addItem(new ItemStack(Material.ENDER_CHEST, 1));
+                p.getInventory().addItem(new ItemStack(Material.DEEPSLATE_REDSTONE_ORE, 1));
+                p.getInventory().addItem(new ItemStack(Material.DEEPSLATE_LAPIS_ORE, 1));
+
                 return true;
 
             }

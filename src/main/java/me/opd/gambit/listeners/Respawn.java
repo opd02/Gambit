@@ -16,13 +16,14 @@ import org.bukkit.potion.PotionEffectType;
 public class Respawn implements Listener {
 
     private GambitPlugin plugin;
-    public Respawn(GambitPlugin plugin){
+
+    public Respawn(GambitPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent e){
-        if(!GambitPlugin.allowRespawning){
+    public void onPlayerRespawn(PlayerRespawnEvent e) {
+        if (!GambitPlugin.allowRespawning) {
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
             e.getPlayer().sendMessage(ChatManager.prefix + "You have lost the game!");
             e.getPlayer().getInventory().clear();
@@ -31,13 +32,8 @@ public class Respawn implements Listener {
         Player p = e.getPlayer();
         PlayerInventory pi = p.getInventory();
         pi.remove(Material.NETHER_STAR);
-        p.sendMessage("§cYou have died and lost all the orbs you were carrying!");
+        p.sendMessage(ChatManager.prefix + "§cYou have died and lost all the orbs you were carrying!");
         p.setLevel(0);
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-            public void run() {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 2));
-            }
-        }, 2L);
-        return;
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 2)), 2L);
     }
 }
