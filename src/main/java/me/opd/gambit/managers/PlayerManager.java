@@ -1,10 +1,7 @@
 package me.opd.gambit.managers;
 
 import me.opd.gambit.GambitPlugin;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Color;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -52,11 +49,7 @@ public class PlayerManager {
     }
 
     public ChatColor getTeam(Player p) {
-        if (!plugin.alive.containsKey(p.getUniqueId())) {
-            return null;
-        } else {
-            return plugin.alive.get(p.getUniqueId());
-        }
+        return GambitPlugin.alive.getOrDefault(p.getUniqueId(), null);
     }
 
     public void invSet(Player p, ChatColor ccolor) {
@@ -133,5 +126,11 @@ public class PlayerManager {
 
         ItemStack pearl = new ItemStack(Material.ENDER_PEARL, 4);
         pi.setItem(5, pearl);
+    }
+
+    public static void playerSoundForPlayers(Sound sound, float pitch){
+        for (Player player : Bukkit.getOnlinePlayers()){
+            player.playSound(player.getLocation(), sound, 0.5f, pitch);
+        }
     }
 }

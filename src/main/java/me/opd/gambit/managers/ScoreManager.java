@@ -3,6 +3,7 @@ package me.opd.gambit.managers;
 import me.opd.gambit.GambitPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 
 public class ScoreManager {
 
@@ -63,17 +64,17 @@ public class ScoreManager {
     public void runScoreChecks(ChatColor color) {
 
         if (color.equals(ChatColor.RED) && this.redScore >= scoreToWin) {
-            //TODO Add portal  opening and respawn denying
             GambitPlugin.allowRespawning = false;
             this.redBossLevel = 6;
-            for (ChatColor ccolor : GambitPlugin.alive.values()) {
-                if (ccolor.equals(ChatColor.RED)) {
-                }
-            }
+            Bukkit.getServer().broadcastMessage(ChatManager.prefix + " Red team has reached the final death match!");
+            Bukkit.getServer().broadcastMessage(ChatManager.prefix + " Respawning has been disabled for all players.");
+            PlayerManager.playerSoundForPlayers(Sound.ENTITY_ENDER_DRAGON_GROWL,0.1f);
         } else if (color.equals(ChatColor.BLUE) && this.blueScore >= scoreToWin) {
-            //TODO add portal as well and respawn blocking
             GambitPlugin.allowRespawning = false;
             this.redBossLevel = 6;
+            Bukkit.getServer().broadcastMessage(ChatManager.prefix + " Blue team has reached the final death match!");
+            Bukkit.getServer().broadcastMessage(ChatManager.prefix + " Respawning has been disabled for all players.");
+            PlayerManager.playerSoundForPlayers(Sound.ENTITY_ENDER_DRAGON_GROWL,0.1f);
         } else {
             checkIfBoss(color);
         }

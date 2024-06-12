@@ -1,12 +1,8 @@
 package me.opd.gambit.listeners;
 
-import java.util.ArrayList;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import me.opd.gambit.GambitPlugin;
+import me.opd.gambit.managers.PlayerManager;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
@@ -18,8 +14,7 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import me.opd.gambit.GambitPlugin;
-import me.opd.gambit.managers.PlayerManager;
+import java.util.ArrayList;
 
 public class OrbEvents implements Listener {
 
@@ -45,6 +40,9 @@ public class OrbEvents implements Listener {
             item.setItemMeta(itemmeta);
             en.getWorld().dropItemNaturally(l, item);
             return;
+        }
+        else if(e.getEntityType().equals(EntityType.RAVAGER) || e.getEntityType().equals(EntityType.EVOKER)){
+            //TODO set up give player spin token
         }
     }
 
