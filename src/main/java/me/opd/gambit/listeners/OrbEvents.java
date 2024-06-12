@@ -2,6 +2,7 @@ package me.opd.gambit.listeners;
 
 import me.opd.gambit.GambitPlugin;
 import me.opd.gambit.managers.PlayerManager;
+import me.opd.gambit.token.TokenGenerator;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -42,7 +43,7 @@ public class OrbEvents implements Listener {
             return;
         }
         else if(e.getEntityType().equals(EntityType.RAVAGER) || e.getEntityType().equals(EntityType.EVOKER)){
-            //TODO set up give player spin token
+            TokenGenerator.generateToken(l,1);
         }
     }
 

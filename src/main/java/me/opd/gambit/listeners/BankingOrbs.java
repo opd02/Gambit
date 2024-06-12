@@ -62,9 +62,9 @@ public class BankingOrbs implements Listener {
         p.getInventory().remove(Material.NETHER_STAR);
         p.sendTitle(ChatColor.BOLD + "ORBS BANKED",ChatColor.YELLOW + String.valueOf(levels) + " orbs banked", 4, 40, 4);
 
-        int spingive = levels / 5;
-        p.getInventory().addItem(TokenGenerator.tokenItem(spingive));
+        int spinGive = levels / 5;
+        p.getInventory().addItem(TokenGenerator.tokenItem(spinGive));
         p.setLevel(0);
-        p.sendMessage(ChatManager.prefix + ChatColor.YELLOW + "You received §b" + Integer.toString(spingive) + " §espin token(s)!");
+        p.sendMessage(ChatManager.prefix + ChatColor.YELLOW + "You received §b" + Integer.toString(spinGive) + " §espin token(s)!");
     }
 }
